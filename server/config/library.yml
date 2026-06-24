@@ -1,0 +1,50 @@
+# EU Terminology Library Configuration
+
+base:
+  url: https://storage.googleapis.com/tx-fhir-org
+
+sources:
+  # Built-in code systems
+  - internal:lang
+  - internal:country
+  - internal:currency
+  - internal:mimetypes
+
+  # UCUM - Unified Code for Units of Measure
+  - ucum:data/terminology-cache/ucum-essence-2.2.xml
+
+  # LOINC
+  - loinc:loinc-2.81-b.db
+
+  # UNII
+  - unii:unii_20240622.db
+
+  # OMOP
+#  - omop:omop_20230531_a.db
+
+  # SNOMED CT
+  # - snomed!:sct_intl_20250201.cache
+#  - snomed:sct_cs_20250127.cache
+
+  # FHIR Packages - R4/R5
+#  - url:https://hl7-eu.github.io/hl7.eu.terminology.common/package.tgz
+#  - url:https://hl7-eu.github.io/EHDSI-Terminology-package/package.tgz
+  - npm:hl7.eu.terminology.common#0.3.0
+  - npm:hl7.eu.terminology.ehdsi#0.2.0
+  - npm:hl7.terminology.r4
+  - npm:fhir.tx.support.r4
+  - npm:ihe.formatcode.fhir
+  - npm:hl7.fhir.uv.ips#2.0.0
+  - npm:hl7.fhir.uv.ips#1.1.0
+  - npm:fhir.dicom
+
+#  - url:https://hl7-be.github.io/terminology/package.tgz
+#  - npm:hl7.fhir.be.referral-terminology#0.1.0
+
+
+  # FHIR Packages - R3
+#  - npm:hl7.terminology.r3#4.0.0
+#  - npm:fhir.tx.support.r3
+
+  # FHIR Packages - R2
+  - npm:fhir.tx.support.r2

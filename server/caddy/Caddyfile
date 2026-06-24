@@ -1,0 +1,25 @@
+{
+	email jose.a.teixeira@gmail.com
+}
+
+tx.hl7europe.eu {
+	route {
+		@bots header_regexp User-Agent (?i)(Amazonbot|Bytespider|SemrushBot|Googlebot|Applebot|ChatGPT-User)
+		respond @bots 403
+
+		@loinc path /loinc /loinc/*
+		respond @loinc 410
+
+		handle_path /r4/* {
+			rewrite * /tx/r4{uri}
+			reverse_proxy fhirserver:80
+		}
+
+		handle_path /r5/* {
+			rewrite * /tx/r5{uri}
+			reverse_proxy fhirserver:80
+		}
+
+		reverse_proxy fhirserver:80
+	}
+}

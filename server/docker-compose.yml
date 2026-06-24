@@ -1,43 +1,43 @@
-version: '3.8'
-
 services:
   fhirserver:
-    image: ghcr.io/costateixeira/fhirserver:nightly
+    image: ghcr.io/healthintersections/fhirsmith:cibuild
     volumes:
-      - ./txcache:/var/cache/txcache
-      - ./config:/root/fhirserver/config
-    container_name: tx-fhir
+      - ./config:/app/config
+      - ./data:/app/data
+      - ./logs:/app/logs
     expose:
       - "80"
     networks:
-      - fhir_network
+      fhir_network:
+        aliases: [fhirserver]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:80/health || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 12
 
-  nginx:
-    image: nginx:latest
-    container_name: tx-nginx
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-      - ./certbot/www:/var/www/certbot
-      - ./certbot/letsencrypt:/etc/letsencrypt
+  caddy:
+    image: caddy:2
+    container_name: tx-caddy
     ports:
       - "80:80"
       - "443:443"
     depends_on:
-      - fhirserver
+      fhirserver:
+        condition: service_started
     networks:
       - fhir_network
     restart: unless-stopped
-
-  certbot:
-    image: certbot/certbot
-    container_name: tx-certbot
     volumes:
-      - ./certbot/www:/var/www/certbot
-      - ./certbot/letsencrypt:/etc/letsencrypt
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --webroot -w /var/www/certbot --quiet && nginx -s reload; sleep 12h & wait $${!}; done'"
-    networks:
-      - fhir_network
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data       # persists issued certs across restarts
+      - caddy_config:/config
 
 networks:
   fhir_network:
     driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:
