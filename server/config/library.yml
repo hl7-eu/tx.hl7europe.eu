@@ -29,7 +29,7 @@ sources:
   # FHIR Packages - R4/R5
 #  - url:https://hl7-eu.github.io/hl7.eu.terminology.common/package.tgz
 #  - url:https://hl7-eu.github.io/EHDSI-Terminology-package/package.tgz
-  - npm:hl7.eu.terminology.common#0.3.0
+  - npm:hl7.eu.terminology.common#0.4.0
   - npm:hl7.eu.terminology.ehdsi#0.2.0
   - npm:hl7.terminology.r4
   - npm:fhir.tx.support.r4
@@ -45,6 +45,3 @@ sources:
   # FHIR Packages - R3
 #  - npm:hl7.terminology.r3#4.0.0
 #  - npm:fhir.tx.support.r3
-
-  # FHIR Packages - R2
-  - npm:fhir.tx.support.r2
