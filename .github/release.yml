@@ -1,0 +1,14 @@
+# Categories for "Generate release notes" on a GitHub release: pull requests
+# are grouped by label. See docs/server/releasing.md.
+changelog:
+  categories:
+    - title: Content
+      labels: [content]
+    - title: Server
+      labels: [server]
+    - title: Tests
+      labels: [tests]
+    - title: Documentation
+      labels: [docs]
+    - title: Other changes
+      labels: ["*"]

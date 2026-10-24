@@ -1,0 +1,131 @@
+# Deployment tests: run tests/features against the live server in a
+# throwaway ITB, store the results on the test-results branch, and rebuild
+# the site so the release shows its test status.
+#
+# A published release is tested as that release. A manual run can name the
+# release it re-tests; a scheduled run is a check between releases.
+name: Deployment tests
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      release:
+        description: Release tag this run tests (empty for a check between releases)
+        required: false
+      server:
+        description: Terminology server to test
+        required: false
+        default: https://tx.hl7europe.eu/r4
+  schedule:
+    - cron: "0 5 * * 1"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: deployment-tests
+  cancel-in-progress: false
+
+env:
+  # OpenTestBed tooling, pinned: the compiler (itb-cli) and the dialects it
+  # reads (itb-plugin-authoring/app/public/components). Bump deliberately.
+  ITB_CLI_REF: 8188124ca7f46260d8c5f91d6ea31a439a00aeec
+  AUTHORING_REF: 170d3714cd8eecb51ae59a8a8d3a84142d0632d6
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    outputs:
+      result: ${{ steps.run.outputs.result }}
+    env:
+      RELEASE_TAG: ${{ github.event.release.tag_name || inputs.release }}
+    steps:
+      - name: Checkout (the release's tag when there is one)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name || inputs.release || github.ref }}
+
+      - name: Checkout itb-cli
+        uses: actions/checkout@v4
+        with:
+          repository: OpenTestBed/itb-cli
+          ref: ${{ env.ITB_CLI_REF }}
+          path: otb/itb-cli
+
+      - name: Checkout itb-plugin-authoring (dialects)
+        uses: actions/checkout@v4
+        with:
+          repository: OpenTestBed/itb-plugin-authoring
+          ref: ${{ env.AUTHORING_REF }}
+          path: otb/itb-plugin-authoring
+          sparse-checkout: app/public
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install itb-cli
+        run: npm ci --no-audit --no-fund
+        working-directory: otb/itb-cli
+
+      - name: Start ITB and the FHIR validator
+        run: bash tests/itb/bootstrap.sh | tail -1 >> "$GITHUB_ENV"
+
+      - name: Run the tests
+        id: run
+        run: |
+          set +e
+          node tests/itb/run.mjs --itb-cli otb/itb-cli --out out \
+            --server "${{ inputs.server || 'https://tx.hl7europe.eu/r4' }}" \
+            ${RELEASE_TAG:+--release "$RELEASE_TAG"}
+          echo "exit=$?" >> "$GITHUB_OUTPUT"
+          echo "result=$(node -p "require('./out/results.json').result")" >> "$GITHUB_OUTPUT"
+
+      - name: Keep the ITB logs
+        if: always()
+        run: docker compose -p tx-tests logs --no-color > ../../out/itb.log 2>&1 || true
+        working-directory: tests/itb
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: deployment-tests
+          path: out/
+
+      - name: Store the results on the test-results branch
+        run: |
+          RUN_ID="$(date -u +%Y%m%d-%H%M)-${{ github.run_number }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin test-results >/dev/null; then
+            git fetch --depth 1 origin test-results
+            git worktree add results FETCH_HEAD
+          else
+            git worktree add --detach results
+            git -C results checkout --orphan test-results
+            git -C results rm -rfq .
+          fi
+          mkdir -p "results/runs/$RUN_ID"
+          cp -r out/results.json out/reports "results/runs/$RUN_ID/"
+          git -C results add runs
+          git -C results commit -qm "Test run $RUN_ID${RELEASE_TAG:+ for $RELEASE_TAG}: ${{ steps.run.outputs.result }}"
+          git -C results push origin HEAD:test-results
+
+  site:
+    needs: test
+    if: ${{ !cancelled() }}
+    uses: ./.github/workflows/pages.yml
+
+  verdict:
+    needs: [test, site]
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail when the tests did not pass
+        run: |
+          echo "Deployment tests: ${{ needs.test.outputs.result }}"
+          test "${{ needs.test.outputs.result }}" = SUCCESS
