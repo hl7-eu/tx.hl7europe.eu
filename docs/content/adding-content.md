@@ -51,7 +51,7 @@ Before the change is deployed, run the new tests against the live server. They *
 
 ## 4. Pull request
 
-Open a pull request that says `Closes #<issue>` and carries the label `content`. It contains the `library.yml` change and the test. Merge it once reviewed.
+Open a pull request that says `Closes #<issue>`. It contains the `library.yml` change and the test. Merge it once reviewed.
 
 ## 5. Deploy
 

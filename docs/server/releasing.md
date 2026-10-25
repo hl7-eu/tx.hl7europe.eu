@@ -16,15 +16,15 @@ issue ──► change (pull request, here or in another repository) ──► r
 ## Changes
 
 - **Every change starts as an issue** in this repository: a content request ([Adding content](../content/adding-content.html)), a server update ([Updating the server](updates.html)), or a problem report. When the work itself happens elsewhere (a terminology package, an IG, FHIRsmith), the issue links to it and stays open until the result is on the server.
-- **Every change here is a pull request** that says `Closes #<issue>` and has one label: `content`, `server`, `tests` or `docs`. The label decides where the change goes in the release notes.
+- **Every change here is a pull request** that says `Closes #<issue>`.
 
 ## Release notes
 
-Release notes are written on the GitHub release. *Generate release notes* fills them from the merged pull requests, grouped by label (see [`.github/release.yml`](https://github.com/hl7-eu/tx.hl7europe.eu/blob/master/.github/release.yml)). Then edit them into what a user of the server needs to know:
+Release notes are written on the GitHub release. *Generate release notes* lists the merged pull requests. Then edit them into what a user of the server needs to know:
 
 - **Content**: packages added, removed or moved to a new version, with the versions.
 - **Server**: FHIRsmith and Caddy versions, and any behaviour change users will notice.
-- **Known issues**: anything that's still wrong, with its issue.
+- **Known issues**: defects still open, each with its issue. Deliberate choices, such as content the server does not carry, are not known issues.
 
 ## Releasing
 
