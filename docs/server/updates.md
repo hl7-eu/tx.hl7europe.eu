@@ -9,7 +9,7 @@ parent: Server setup
 
 The server code is two images in [`server/docker-compose.yml`](https://github.com/hl7-eu/tx.hl7europe.eu/blob/master/server/docker-compose.yml): **FHIRsmith** (`ghcr.io/healthintersections/fhirsmith`), the terminology server, and **Caddy** (`caddy`), the HTTPS proxy in front of it, configured by [`server/caddy/Caddyfile`](https://github.com/hl7-eu/tx.hl7europe.eu/blob/master/server/caddy/Caddyfile).
 
-Both images are pinned to a version. An update is a change to that version in the repository, so it is reviewed, released and can be rolled back. A floating tag (`latest`, `2`) would change the server whenever someone pulls, without any record of it.
+FHIRsmith is pinned to a version: an update is a change to that version in the repository, so it is reviewed, released and can be rolled back. Caddy uses `caddy:2`, which follows the latest Caddy 2 release; whether to pin it is [#15](https://github.com/hl7-eu/tx.hl7europe.eu/issues/15).
 
 ## FHIRsmith
 
@@ -17,8 +17,8 @@ Both images are pinned to a version. An update is a change to that version in th
 2. **Open an issue** ("update FHIRsmith to 0.19.0") and a branch.
 3. **Change the version in two places**, in the same commit:
    - `server/docker-compose.yml`: `image: ghcr.io/healthintersections/fhirsmith:<version>`
-   - `tests/features/server.feature`: `software.version = '<version>'`. The test checks the server reports the release the compose file names.
-4. **Pull request** with `Closes #<issue>` and the label `server`.
+   - `tests/features/server.feature` and `tests/features/server-r5.feature`: `software.version = '<version>'`. The tests check both endpoints report the release the compose file names.
+4. **Pull request** with `Closes #<issue>`.
 5. **Deploy** on the server, in the `server/` folder of the checkout. First note the running version, so you can go back to it:
 
    ```bash
@@ -36,8 +36,8 @@ Both images are pinned to a version. An update is a change to that version in th
 
 Caddy changes less often, and its configuration matters more than its version.
 
-- **Image:** pin `caddy` to an exact version (`caddy:2.10.2`, not `caddy:2`). To find what's running: `sudo docker compose exec caddy caddy version`. Update it the same way as FHIRsmith, steps 1–7. There is no version test for Caddy; the deployment tests reach the server through it, so a broken proxy fails all of them.
-- **Caddyfile:** a change to routing (`/r4`, `/r5`), blocked paths or user agents is a server change too: issue, pull request with the label `server`, then on the server `git pull` and `sudo docker compose restart caddy`. Certificates are kept in the `caddy_data` volume across restarts.
+- **Image:** `caddy:2` takes the latest Caddy 2 release on `sudo docker compose pull caddy`. To find what's running: `sudo docker compose exec caddy caddy version`. There is no version test for Caddy; the deployment tests reach the server through it, so a broken proxy fails all of them.
+- **Caddyfile:** a change to routing (`/r4`, `/r5`), blocked paths or user agents is a server change too: issue, pull request, then on the server `git pull` and `sudo docker compose restart caddy`. Certificates are kept in the `caddy_data` volume across restarts.
 
 ## Tooling for the tests
 

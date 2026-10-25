@@ -14,7 +14,7 @@ Results are on the [Releases](releases/) page: per release, then per suite, then
 
 | Suite | File | Checks |
 |---|---|---|
-| Server | `server.feature` | The capability statement names the FHIRsmith version pinned in `server/docker-compose.yml`, and the terminology capabilities are served. |
+| Server | `server.feature`, `server-r5.feature` | At `/r4` and `/r5`, the capability statement names the FHIRsmith version pinned in `server/docker-compose.yml` and the FHIR version of the endpoint; the terminology capabilities are served, and `/r5` serves the library content too. |
 | Content, one suite per package or group of sources | `<package>.feature` | For each source in `library.yml`: a code from it is found (`$lookup`, `$validate-code`), in the version `library.yml` names; for value sets, `$validate-code` and `$expand` with that version. |
 | Coverage | (the runner) | Every active line of `library.yml` is tagged on some feature (`@library:<line>`). A line without a test makes the run *incomplete*. |
 

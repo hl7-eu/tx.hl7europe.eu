@@ -14,14 +14,11 @@ on:
       - "tests/site/**"
 
   # Release notes changed. A newly published release reaches the site through
-  # tests.yml, which calls this workflow once its test run is stored.
+  # tests.yml, which starts this workflow once its test run is stored.
   release:
     types: [edited, deleted]
 
-  # Called by tests.yml after a test run.
-  workflow_call:
-
-  # Allows you to run this workflow manually from the Actions tab
+  # Started by tests.yml after a test run, or by hand from the Actions tab
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -29,6 +26,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: write   # release events: restart on master (see below)
 
 # Allow one concurrent deployment
 concurrency:
@@ -36,8 +34,19 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # A release event runs on its tag, and the github-pages environment only
+  # accepts deployments from master: start this workflow again there.
+  on-master:
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml -R "${{ github.repository }}" --ref "${{ github.event.repository.default_branch }}"
+
   # Build job
   build:
+    if: github.event_name != 'release'
     runs-on: ubuntu-latest
     defaults:
       run:

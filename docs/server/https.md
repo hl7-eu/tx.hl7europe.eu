@@ -5,6 +5,8 @@ nav_order: 3
 parent: Server setup
 ---
 
+> **The server now uses [Caddy](https://caddyserver.com/) instead of Nginx.** Caddy obtains and renews the Let's Encrypt certificate itself, and its configuration is [`server/caddy/Caddyfile`](https://github.com/hl7-eu/tx.hl7europe.eu/blob/master/server/caddy/Caddyfile). To change it, see [Updating the server](updates.html#caddy). The Nginx setup below is kept for reference only.
+
 # Secure FHIR Server with Nginx and Let's Encrypt
 
 How to set u behind **Nginx with HTTPS** using **Let's Encrypt** inside Docker.  

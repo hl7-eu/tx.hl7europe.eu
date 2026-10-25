@@ -151,9 +151,16 @@ releases.forEach((r, i) => {
 
 // ── The index ──
 let md = front({ layout: 'default', title: 'Releases', nav_order: 3, has_children: true });
-md += `# Releases\n\nEach release is an edition of the server: its content (\`server/config/library.yml\`), the FHIRsmith server and Caddy in front of it, ` +
-  `with release notes that link the issues it resolves. After the release is deployed, the deployment tests run against the live server; ` +
-  `their result is recorded with the release. Open a release for its notes and test summary, and its test run for every test case and step.\n\n`;
+const HOW = {
+  content: '../content/adding-content.html',
+  fhirsmith: '../server/updates.html#fhirsmith',
+  caddy: '../server/updates.html#caddy',
+  releasing: '../server/releasing.html',
+};
+md += `# Releases\n\nEach release is an edition of the server: its [content](${HOW.content}), the [FHIRsmith server](${HOW.fhirsmith}) ` +
+  `and [Caddy](${HOW.caddy}) in front of it, with release notes that link the issues it resolves. After the release is deployed, ` +
+  `the deployment tests run against the live server; their result is recorded with the release. Open a release for its notes and ` +
+  `test summary, and its test run for every test case and step.\n\n`;
 // A Markdown table needs at least one row, or kramdown prints it as text.
 if (!releases.length) md += `_No releases yet._\n`;
 else md += `| Release | Date | Server | Tests |\n|---|---|---|---|\n` + releases.map(r => {
@@ -166,5 +173,10 @@ if (loose.length) {
   md += `\n## Latest checks between releases\n\nScheduled and manual runs against the live server.\n\n| Run | Date | Server | Tests |\n|---|---|---|---|\n`;
   md += loose.map(r => `| [${r.id}](runs/${r.id}.html) | ${day(r.date)} | ${r.software ? `${r.software.name} ${r.software.version}` : ''} | ${label(r.result)} ${r.totals.passed}/${r.totals.cases} |`).join('\n') + '\n';
 }
+md += `\n## Changing the server\n\n` +
+  `- [Add or update content](${HOW.content}): a package or code system in the server's library, with the tests that prove it is served\n` +
+  `- [Update FHIRsmith](${HOW.fhirsmith}): a new version of the terminology server\n` +
+  `- [Update Caddy](${HOW.caddy}): the proxy's version or configuration\n` +
+  `- [Release](${HOW.releasing}): put the changes in a new edition, with its release notes and tests\n`;
 fs.writeFileSync(path.join(OUT, 'index.md'), md);
 console.log(`releases: ${releases.length}, runs: ${runs.length} -> ${OUT}`);
