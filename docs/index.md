@@ -45,14 +45,14 @@ split again
 end split
 |Maintainers|
 :Discuss the issue;
-if (Content?) then (yes)
+if (Server change or problem?) then (yes)
+  :Decide in the issue;
+else (no: content)
   |Terminology maintainers|
   :Check the request, or prepare
   the change (e.g. update a code system)
   and publish the content as a package;
   |Maintainers|
-else (no)
-  :Decide in the issue;
 endif
 :Onboard the change when ready
 and wanted: pull request that closes
