@@ -28,6 +28,8 @@ const OUT = path.resolve(opt('out', 'docs/releases'));
 const PLANS = path.resolve(opt('plans', 'docs/test-plan'));
 const REPO = path.resolve(opt('repo', '.'));
 
+// The European Commission's Interoperability Test Bed, which runs the tests.
+const ITB = 'https://www.itb.ec.europa.eu/';
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const slug = s => String(s).replace(/[^\w.-]+/g, '-');
 const day = iso => iso ? iso.slice(0, 10) : '';
@@ -99,6 +101,7 @@ search_exclude: true
   <tr><th>Release</th><td>${rel}</td></tr>
   <tr><th>Date</th><td>${esc(run.date.replace('T', ' ').slice(0, 16))} UTC</td></tr>
   <tr><th>Server</th><td><code>${esc(run.server)}</code> · ${esc(run.software ? `${run.software.name} ${run.software.version}` : 'software not reported')}</td></tr>
+  <tr><th>Test bed</th><td><a href="${ITB}">Interoperability Test Bed (ITB)</a> of the European Commission</td></tr>
   <tr><th>Result</th><td>${esc(totalsText(run.totals))}</td></tr>
   ${run.run ? `<tr><th>Workflow run</th><td><a href="${esc(run.run)}">${esc(run.run)}</a></td></tr>` : ''}
   ${run.commit ? `<tr><th>Tests at</th><td><code>${esc(run.commit.slice(0, 12))}</code></td></tr>` : ''}
@@ -139,7 +142,7 @@ releases.forEach((r, i) => {
       `| Caddy | \`${ed.caddy}\`, [Caddyfile](${tree}/server/caddy/Caddyfile) \`${ed.caddyfile}\` |\n` +
       `| Content | ${ed.library.length} sources in [library.yml](${tree}/server/config/library.yml) |\n\n`;
   }
-  md += `## Test status\n\nTested against the [test plan of ${r.tag_name}](../test-plan/${slug(r.tag_name)}.html).\n\n`;
+  md += `## Test status\n\nTested in the European Commission's [Interoperability Test Bed (ITB)](${ITB}) against the [test plan of ${r.tag_name}](../test-plan/${slug(r.tag_name)}.html).\n\n`;
   if (!latest) {
     md += `No test run has been recorded for this release.\n`;
   } else {
@@ -165,7 +168,7 @@ const HOW = {
 };
 md += `# Releases\n\nEach release is an edition of the server: its [content](${HOW.content}), the [FHIRsmith server](${HOW.fhirsmith}) ` +
   `and [Caddy](${HOW.caddy}) in front of it, with release notes that link the issues it resolves. After the release is deployed, ` +
-  `the deployment tests run against the live server; their result is recorded with the release. Open a release for its notes and ` +
+  `the deployment tests run against the live server in the European Commission's [Interoperability Test Bed (ITB)](${ITB}); their result is recorded with the release. Open a release for its notes and ` +
   `test summary, and its test run for every test case and step.\n\n`;
 // A Markdown table needs at least one row, or kramdown prints it as text.
 if (!releases.length) md += `_No releases yet._\n`;
@@ -223,7 +226,7 @@ function parseFeature(file, text) {
 function planPage(features, { title, intro, front: fm }) {
   const total = features.reduce((n, f) => n + f.scenarios.length, 0);
   let p = front(fm) + `# ${title}\n\n${intro}\n\n` +
-    `${features.length} features, ${total} test cases. How the tests are run, and how to read their results: [Testing](../testing.html).\n\n` +
+    `${features.length} features, ${total} test cases, run in the European Commission's [Interoperability Test Bed (ITB)](${ITB}). How the tests are run, and how to read their results: [Testing](../testing.html).\n\n` +
     `| Feature | What it checks | library.yml sources | Test cases |\n|---|---|---|---|\n` +
     features.map(f => `| [${f.name}](#${slug(f.file)}) | ${f.desc.replace(/\|/g, '\\|')} | ${f.sources.length ? f.sources.map(s => `\`${s}\``).join('<br>') : '—'} | ${f.scenarios.length} |`).join('\n') + '\n';
   for (const f of features) {
