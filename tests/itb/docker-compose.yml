@@ -1,0 +1,58 @@
+# Throwaway test bed for the deployment tests: ITB core (as in
+# OpenTestBed/itb-starter) plus the FHIR validator the assertions call.
+# Started by .github/workflows/tests.yml, or locally with tests/itb/run.sh.
+# Nothing here is persistent: `docker compose down -v` wipes it.
+services:
+  gitb-redis:
+    image: redis:7.2.5
+  gitb-mysql:
+    image: isaitb/gitb-mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=gitb-root
+      - MYSQL_PASSWORD=gitb
+    healthcheck:
+      test: ["CMD-SHELL", "/usr/bin/mysql --user=root --password=$$MYSQL_ROOT_PASSWORD --execute 'SHOW DATABASES;'"]
+      interval: 3s
+      retries: 50
+  gitb-srv:
+    image: isaitb/gitb-srv:latest
+    depends_on:
+      gitb-redis: { condition: service_started }
+      gitb-mysql: { condition: service_healthy }
+  gitb-ui:
+    image: isaitb/gitb-ui:latest
+    ports: ["${ITB_PORT:-10003}:9000"]
+    environment:
+      - DB_DEFAULT_PASSWORD=gitb
+      - AUTOMATION_API_ENABLED=true
+      - AUTOMATION_API_MASTER_KEY=${ITB_MASTER_KEY:-master-api-key}
+      - STARTUP_WIZARD_ENABLED=false
+      - SOFTWARE_VERSION_CHECK_ENABLED=false
+    depends_on:
+      gitb-redis: { condition: service_started }
+      gitb-mysql: { condition: service_healthy }
+      gitb-srv: { condition: service_started }
+
+  # The OpenTestBed build of validator_cli.jar: its /itb/* GITB services
+  # (FHIRPath, assertions, matchetype) are what `should satisfy` calls.
+  fhir-validator:
+    image: eclipse-temurin:17-jre
+    working_dir: /app
+    environment:
+      - JAVA_TOOL_OPTIONS=-Xmx4g
+      - VALIDATOR_URL=${VALIDATOR_URL:-https://github.com/costateixeira/org.hl7.fhir.core/releases/download/wip/validator_cli.jar}
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        apt-get update -qq && apt-get install -y -qq --no-install-recommends curl ca-certificates
+        curl -fSL --retry 3 -o /app/validator_cli.jar "$$VALIDATOR_URL"
+        exec java -jar /app/validator_cli.jar server 8080 -version 4.0 -allowNetworkAccess
+    healthcheck:
+      # curl, not /dev/tcp: /bin/sh in this image is dash, which has no /dev/tcp.
+      test: ["CMD-SHELL", "curl -s -o /dev/null http://localhost:8080/ || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 60
+      start_period: 120s

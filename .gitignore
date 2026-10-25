@@ -1,5 +1,8 @@
 
 /tests/target
+/tests/out
+/otb/
+/server/data/logs/
 /server/txcache/fhir-server/fhir.dicom\#2024.2.20240331
 /server/txcache/fhir-server/fhir.dicom\#2025.1.20250221
 /server/txcache/fhir-server/fhir.tx.support.r2\#0.3.0

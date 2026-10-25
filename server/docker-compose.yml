@@ -1,6 +1,7 @@
 services:
   fhirserver:
-    image: ghcr.io/healthintersections/fhirsmith:cibuild
+    # Pinned: change it with the version in tests/features/server.feature (docs/server/updates.md).
+    image: ghcr.io/healthintersections/fhirsmith:0.18.0
     volumes:
       - ./config:/app/config
       - ./data:/app/data
