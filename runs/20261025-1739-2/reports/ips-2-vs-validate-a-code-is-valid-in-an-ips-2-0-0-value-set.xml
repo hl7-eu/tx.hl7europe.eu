@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseOverviewReport xmlns="http://www.gitb.com/tr/v1/"
+                        xmlns:ns2="http://www.gitb.com/core/v1/"
+                        xmlns:ns3="http://www.gitb.com/tbs/v1/"
+                        id="ips-2-vs-validate-a-code-is-valid-in-an-ips-2-0-0-value-set">
+   <metadata>
+      <ns2:name>ips-2-vs-validate A code is valid in an IPS 2.0.0 value set</ns2:name>
+      <ns2:version>1.0</ns2:version>
+      <ns2:description>Packages hl7.fhir.uv.ips</ns2:description>
+   </metadata>
+   <sessionId>f03ff6ae-cd03-40a1-9e7c-f1c4e9fff610</sessionId>
+   <startTime>2026-10-25T17:38:53.000Z</startTime>
+   <endTime>2026-10-25T17:38:54.000Z</endTime>
+   <result>SUCCESS</result>
+   <message>Test case completed successfully.</message>
+   <steps>
+      <step id="2">
+         <description>Step 1: POST /ValueSet/$validate-code</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 id="2">
+            <date>2026-10-25T17:38:53.093Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+      <step id="3">
+         <description>Step 2: Response status is 200</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 name="Number Validation"
+                 id="3">
+            <date>2026-10-25T17:38:53.106Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+      <step id="5">
+         <description>Step 3: FHIRPath assertion: parameter.where(name = 'result').value = true</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 id="5">
+            <date>2026-10-25T17:38:53.194Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+      <step id="7">
+         <description>Step 4: $response satisfies parameter.where(name = 'result').value = true</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 name="String Validation"
+                 id="7">
+            <date>2026-10-25T17:38:53.227Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+   </steps>
+</TestCaseOverviewReport>
