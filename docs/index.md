@@ -30,6 +30,10 @@ skinparam ActivityBorderColor #1F5B99
 skinparam ArrowColor #1F5B99
 skinparam SwimlaneTitleFontStyle bold
 |Requester|
+|Maintainers|
+|Terminology maintainers|
+|GitHub Actions|
+|Requester|
 start
 split
   :Open an issue
@@ -40,8 +44,15 @@ split again
   (upgrade or fix);
 end split
 |Maintainers|
-:Discuss and decide
-in the issue;
+:Discuss the issue;
+if (Content?) then (yes, if needed)
+  |Terminology maintainers|
+  :Advise on the content
+  in the issue;
+  |Maintainers|
+else (no)
+endif
+:Decide in the issue;
 :Pull request that closes the issue:
 library.yml, FHIRsmith or Caddy
 plus its test;

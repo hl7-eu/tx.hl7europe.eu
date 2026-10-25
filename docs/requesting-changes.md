@@ -22,7 +22,7 @@ Check the [Releases](releases/) page first: the current release lists the conten
 
 ## What happens next
 
-1. **Discussion and decision in the issue.** The maintainers of this repository review the request and answer in the issue: questions, the decision, and the release it is planned for.
+1. **Discussion and decision in the issue.** The maintainers of this repository review the request and answer in the issue: questions, the decision, and the release it is planned for. For a content request they may call on the terminology maintainers, those who maintain the terminology or package concerned, to advise in the issue before deciding.
 2. **The change is a pull request** that says `Closes #<issue>`. A content change contains the `library.yml` change and a test that proves the content is served ([Adding content](content/adding-content.html)). A server change contains the new version and its test ([Updating the server](server/updates.html)). The issue closes when the pull request is merged.
 3. **The change reaches the server with the next release.** The release notes link the issue; the release is deployed, and the deployment tests run against the live server ([Releasing](server/releasing.html)).
 4. **The result is on the [Releases](releases/) page**: the release, its notes, and the test result for every source and check.
