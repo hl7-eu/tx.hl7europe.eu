@@ -2,13 +2,14 @@
 layout: default
 title: Testing
 nav_order: 9
+has_children: true
 ---
 
-# Test plan
+# Testing
 
-The deployment tests answer one question after every change: **does the live server serve what this release says it serves?** They run against `https://tx.hl7europe.eu/r4` from outside, through Caddy, the way an IG publisher or validator reaches it.
+The deployment tests answer one question after every change: **does the live server serve what this release says it serves?** They run against `https://tx.hl7europe.eu/r4` and `/r5` from outside, through Caddy, the way an IG publisher or validator reaches it.
 
-Results are on the [Releases](releases/) page: per release, then per suite, then per test case and step.
+The tests run in the European Commission's [Interoperability Test Bed (ITB)](https://www.itb.ec.europa.eu/). The **[test plan](test-plan/)** lists every feature and test case, with what it checks. Results are on the [Releases](releases/) page: per release, then per suite, then per test case and step.
 
 ## What is tested
 
@@ -46,7 +47,7 @@ Scenario: ehdsi-vs-validate A code is valid in an eHDSI value set of the package
   And $response should satisfy "parameter.where(name = 'result').value = true"
 ```
 
-The [Deployment tests workflow](https://github.com/hl7-eu/tx.hl7europe.eu/blob/master/.github/workflows/tests.yml) starts a throwaway [Interoperability Test Bed](https://interoperable-europe.ec.europa.eu/collection/itb) and the FHIR validator in Docker on the GitHub runner (`tests/itb/`). It compiles each feature to an ITB test suite, runs every test case against the live server, and stores the results on the `test-results` branch. The site is then rebuilt from them. The `should satisfy` assertions are FHIRPath, evaluated by the validator.
+The [Deployment tests workflow](https://github.com/hl7-eu/tx.hl7europe.eu/blob/master/.github/workflows/tests.yml) starts a throwaway [Interoperability Test Bed](https://www.itb.ec.europa.eu/) and the FHIR validator in Docker on the GitHub runner (`tests/itb/`). It compiles each feature to an ITB test suite, runs every test case against the live server, and stores the results on the `test-results` branch. The site is then rebuilt from them. The `should satisfy` assertions are FHIRPath, evaluated by the validator.
 
 Operations available (the `fhir-terminology` dialect):
 
