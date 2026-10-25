@@ -151,11 +151,12 @@ releases.forEach((r, i) => {
 
 // ── The index ──
 let md = front({ layout: 'default', title: 'Releases', nav_order: 3, has_children: true });
-md += `# Releases\n\nEach release of the server is a change to its code (the FHIRsmith image) or to its content (\`server/config/library.yml\`), ` +
+md += `# Releases\n\nEach release is an edition of the server: its content (\`server/config/library.yml\`), the FHIRsmith server and Caddy in front of it, ` +
   `with release notes that link the issues it resolves. After the release is deployed, the deployment tests run against the live server; ` +
   `their result is recorded with the release. Open a release for its notes and test summary, and its test run for every test case and step.\n\n`;
-md += `| Release | Date | Server | Tests |\n|---|---|---|---|\n`;
-md += releases.map(r => {
+// A Markdown table needs at least one row, or kramdown prints it as text.
+if (!releases.length) md += `_No releases yet._\n`;
+else md += `| Release | Date | Server | Tests |\n|---|---|---|---|\n` + releases.map(r => {
   const latest = runsOf(r.tag_name)[0];
   const sw = latest?.software ? `${latest.software.name} ${latest.software.version}` : '';
   return `| [${r.tag_name}](${slug(r.tag_name)}.html) | ${day(r.published_at)} | ${sw} | ${latest ? `[${label(latest.result)}](runs/${latest.id}.html) ${latest.totals.passed}/${latest.totals.cases}` : label(null)} |`;
@@ -165,6 +166,5 @@ if (loose.length) {
   md += `\n## Latest checks between releases\n\nScheduled and manual runs against the live server.\n\n| Run | Date | Server | Tests |\n|---|---|---|---|\n`;
   md += loose.map(r => `| [${r.id}](runs/${r.id}.html) | ${day(r.date)} | ${r.software ? `${r.software.name} ${r.software.version}` : ''} | ${label(r.result)} ${r.totals.passed}/${r.totals.cases} |`).join('\n') + '\n';
 }
-if (!releases.length && !runs.length) md += `\n_No releases yet._\n`;
 fs.writeFileSync(path.join(OUT, 'index.md'), md);
 console.log(`releases: ${releases.length}, runs: ${runs.length} -> ${OUT}`);
