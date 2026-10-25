@@ -5,14 +5,14 @@ nav_order: 1
 ---
 
 
-The HL7 EU Terminology server, hosted at [http://tx.hl7europe.eu](http://tx.hl7europe.eu), is used for authoring and validating FHIR specifications. 
+The HL7 EU Terminology server, hosted at [https://tx.hl7europe.eu](https://tx.hl7europe.eu), is used for authoring and validating FHIR specifications. 
 
 Please note:
 > **The FHIR Tooling eco-system exists to support design time and publication usage. It is not intended to support production use, and should not be used in operational systems.**
 
 This documentation describes the server setup and tooling 
 
-There is a roadmap for terminology content and an issue page where terminology content changes can be requested.
+There is a [roadmap for terminology content](https://github.com/orgs/hl7-eu/projects/7/views/8) and an [issue page](https://github.com/hl7-eu/tx.hl7europe.eu/issues) where terminology content changes can be requested. Each edition of the server is a [release](releases/), with its release notes and test results.
 
 
 This documentation is hosted in the [github repository](https://github.com/hl7-eu/tx.hl7europe.eu), in the [docs folder](https://github.com/hl7-eu/tx.hl7europe.eu/tree/master/docs).
