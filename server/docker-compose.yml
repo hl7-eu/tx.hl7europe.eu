@@ -19,8 +19,7 @@ services:
       retries: 12
 
   caddy:
-    # Pinned: change it as described in docs/server/updates.md.
-    image: caddy:2.11.7
+    image: caddy:2
     container_name: tx-caddy
     ports:
       - "80:80"

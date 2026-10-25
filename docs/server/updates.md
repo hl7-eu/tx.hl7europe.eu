@@ -36,7 +36,7 @@ Both images are pinned to a version. An update is a change to that version in th
 
 Caddy changes less often, and its configuration matters more than its version.
 
-- **Image:** `caddy` is pinned to an exact version (`caddy:2.11.7`, not `caddy:2`). To find what's running: `sudo docker compose exec caddy caddy version`. Update it the same way as FHIRsmith, steps 1–7. There is no version test for Caddy; the deployment tests reach the server through it, so a broken proxy fails all of them.
+- **Image:** pin `caddy` to an exact version (`caddy:2.10.2`, not `caddy:2`). To find what's running: `sudo docker compose exec caddy caddy version`. Update it the same way as FHIRsmith, steps 1–7. There is no version test for Caddy; the deployment tests reach the server through it, so a broken proxy fails all of them.
 - **Caddyfile:** a change to routing (`/r4`, `/r5`), blocked paths or user agents is a server change too: issue, pull request, then on the server `git pull` and `sudo docker compose restart caddy`. Certificates are kept in the `caddy_data` volume across restarts.
 
 ## Tooling for the tests
