@@ -6,7 +6,7 @@ nav_order: 5
 
 # Requesting a change
 
-Every change to the server, whether to its content, the FHIRsmith server or Caddy, starts as an issue in this repository. Problems with what the server answers are reported the same way.
+Every change to the server, whether to its content, the FHIRsmith server or Caddy, starts as an issue in this repository. Problems with what the server answers are reported the same way. Anyone can open one: users of the server for the content they need or a problem they found, and the maintainers for an upgrade or a fix they plan.
 
 ## Open an issue
 

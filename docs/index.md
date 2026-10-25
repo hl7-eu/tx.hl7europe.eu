@@ -31,8 +31,14 @@ skinparam ArrowColor #1F5B99
 skinparam SwimlaneTitleFontStyle bold
 |Requester|
 start
-:Open an issue
-(content, server or problem);
+split
+  :Open an issue
+  (content change or problem);
+split again
+  |Maintainers|
+  :Open an issue
+  (upgrade or fix);
+end split
 |Maintainers|
 :Discuss and decide
 in the issue;
