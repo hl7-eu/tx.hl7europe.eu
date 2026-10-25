@@ -45,19 +45,19 @@ split again
 end split
 |Maintainers|
 :Discuss the issue;
-if (Content?) then (check or delegate)
+if (Content?) then (yes)
   |Terminology maintainers|
   :Check the request, or prepare
-  the whole change (e.g. update
-  a code system) and publish
-  the content as a package;
+  the change (e.g. update a code system)
+  and publish the content as a package;
   |Maintainers|
 else (no)
+  :Decide in the issue;
 endif
-:Decide in the issue;
-:Onboard the change: pull request
-that closes the issue (library.yml,
-FHIRsmith or Caddy) plus its test;
+:Onboard the change when ready
+and wanted: pull request that closes
+the issue (library.yml, FHIRsmith
+or Caddy) plus its test;
 :Review and merge;
 :Release with release notes;
 :Deploy the release on the server;
