@@ -26,7 +26,7 @@ On a branch, edit the `sources:` list. Each line is `<kind>:<reference>`:
 | `loinc:`, `unii:`, `snomed:`, `ucum:` … | `loinc:loinc-2.81-b.db` | a cache file in the server's data folder |
 | `internal:` | `internal:lang` | a code system built into FHIRsmith |
 
-Name a version (`#x.y.z`) for every package that is ours or that IGs depend on. An unversioned entry changes whenever its publisher releases, and the tests cannot say which version it should be.
+With a version (`#x.y.z`) the server loads exactly that version, and the test can check it. Without one, the server loads the current version at every start, and the test can only check that the content is there. Whether to pin the packages listed without a version today is [#14](https://github.com/hl7-eu/tx.hl7europe.eu/issues/14).
 
 Check that the package is where the line says it is. For `npm:` packages, `https://packages.fhir.org/<package-id>` must list the version. If it doesn't, use `url:`.
 

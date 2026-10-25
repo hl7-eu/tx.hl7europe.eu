@@ -44,8 +44,9 @@ Feature: Unversioned support packages are served
     Then $response.status should be 200
     And $response should satisfy "parameter.where(name = 'result').value = true"
 
-  # The package version is named: without it the server picks the DCM code
-  # system of version 01 that another package carries, which lacks most codes.
+  # The package version is named: the server also holds a DCM code system of
+  # version 01, which it uses when no version is given, and ANN is not in it.
+  # This test needs updating when a new fhir.dicom version is loaded (#14).
   @package:fhir.dicom
   Scenario: dicom-cs-lookup The DICOM code system from fhir.dicom is served
     When Client looks up a code on TxServer with:
