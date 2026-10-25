@@ -45,10 +45,11 @@ split again
 end split
 |Maintainers|
 :Discuss the issue;
-if (Content?) then (yes, if needed)
+if (Content?) then (delegate or check)
   |Terminology maintainers|
-  :Advise on the content
-  in the issue;
+  :Check the request, or update
+  the terminology (e.g. a code system)
+  and publish a new package version;
   |Maintainers|
 else (no)
 endif
