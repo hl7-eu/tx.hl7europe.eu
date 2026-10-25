@@ -56,6 +56,7 @@ else (no: content)
 endif
 :Take in the change
 when ready and wanted;
+:Update the test plan;
 :Release a new edition
 with release notes;
 :Put the edition
