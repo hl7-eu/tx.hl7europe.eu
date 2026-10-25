@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseOverviewReport xmlns="http://www.gitb.com/tr/v1/"
+                        xmlns:ns2="http://www.gitb.com/core/v1/"
+                        xmlns:ns3="http://www.gitb.com/tbs/v1/"
+                        id="server-terminology-capabilities-the-terminology-capabilities-are-served">
+   <metadata>
+      <ns2:name>server-terminology-capabilities The terminology capabilities are served</ns2:name>
+      <ns2:version>1.0</ns2:version>
+      <ns2:description>The server runs the expected FHIRsmith release</ns2:description>
+   </metadata>
+   <sessionId>71cf33d0-2715-41a4-a666-497890a03f48</sessionId>
+   <startTime>2026-10-25T08:43:03.000Z</startTime>
+   <endTime>2026-10-25T08:43:05.000Z</endTime>
+   <result>SUCCESS</result>
+   <message>Test case completed successfully.</message>
+   <steps>
+      <step id="1">
+         <description>Step 1: GET /metadata?mode=terminology</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 id="1">
+            <date>2026-10-25T08:43:04.342Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+      <step id="2">
+         <description>Step 2: Response status is 200</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 name="Number Validation"
+                 id="2">
+            <date>2026-10-25T08:43:04.363Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+      <step id="4">
+         <description>Step 3: FHIRPath assertion: codeSystem.where(uri = 'http://loinc.org').exists()</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 id="4">
+            <date>2026-10-25T08:43:04.530Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+      <step id="6">
+         <description>Step 4: $tcaps satisfies codeSystem.where(uri = 'http://loinc.org').exists()</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 name="String Validation"
+                 id="6">
+            <date>2026-10-25T08:43:04.610Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+   </steps>
+</TestCaseOverviewReport>

@@ -1,0 +1,1083 @@
+{
+  "release": "",
+  "server": "https://tx.hl7europe.eu/r4",
+  "software": {
+    "name": "FHIRsmith",
+    "version": "0.18.0",
+    "releaseDate": "2026-10-23"
+  },
+  "edition": {
+    "fhirsmith": "ghcr.io/healthintersections/fhirsmith:0.18.0",
+    "caddy": "caddy:2",
+    "caddyfile": "27486e775ed9",
+    "library": [
+      "internal:lang",
+      "internal:country",
+      "internal:currency",
+      "internal:mimetypes",
+      "ucum:data/terminology-cache/ucum-essence-2.2.xml",
+      "loinc:loinc-2.81-b.db",
+      "unii:unii_20240622.db",
+      "npm:hl7.eu.terminology.common#0.4.0",
+      "npm:hl7.eu.terminology.ehdsi#0.2.0",
+      "npm:hl7.terminology.r4",
+      "npm:fhir.tx.support.r4",
+      "npm:ihe.formatcode.fhir",
+      "npm:hl7.fhir.uv.ips#2.0.0",
+      "npm:hl7.fhir.uv.ips#1.1.0",
+      "npm:fhir.dicom"
+    ]
+  },
+  "date": "2026-10-25T08:43:05.721Z",
+  "commit": "bc42f1f3fb139010c22dcb272aa569c20445f7ae",
+  "run": "https://github.com/hl7-eu/tx.hl7europe.eu/actions/runs/40177579633",
+  "result": "SUCCESS",
+  "totals": {
+    "cases": 21,
+    "passed": 21,
+    "failed": 0,
+    "undefined": 0,
+    "suiteErrors": 0,
+    "untestedSources": 0
+  },
+  "coverage": [
+    {
+      "source": "internal:lang",
+      "tested": true,
+      "features": [
+        "code-systems.feature"
+      ]
+    },
+    {
+      "source": "internal:country",
+      "tested": true,
+      "features": [
+        "code-systems.feature"
+      ]
+    },
+    {
+      "source": "internal:currency",
+      "tested": true,
+      "features": [
+        "code-systems.feature"
+      ]
+    },
+    {
+      "source": "internal:mimetypes",
+      "tested": true,
+      "features": [
+        "code-systems.feature"
+      ]
+    },
+    {
+      "source": "ucum:data/terminology-cache/ucum-essence-2.2.xml",
+      "tested": true,
+      "features": [
+        "code-systems.feature"
+      ]
+    },
+    {
+      "source": "loinc:loinc-2.81-b.db",
+      "tested": true,
+      "features": [
+        "code-systems.feature"
+      ]
+    },
+    {
+      "source": "unii:unii_20240622.db",
+      "tested": true,
+      "features": [
+        "code-systems.feature"
+      ]
+    },
+    {
+      "source": "npm:hl7.eu.terminology.common#0.4.0",
+      "tested": true,
+      "features": [
+        "hl7.eu.terminology.common.feature"
+      ]
+    },
+    {
+      "source": "npm:hl7.eu.terminology.ehdsi#0.2.0",
+      "tested": true,
+      "features": [
+        "hl7.eu.terminology.ehdsi.feature"
+      ]
+    },
+    {
+      "source": "npm:hl7.terminology.r4",
+      "tested": true,
+      "features": [
+        "hl7-support-packages.feature"
+      ]
+    },
+    {
+      "source": "npm:fhir.tx.support.r4",
+      "tested": true,
+      "features": [
+        "hl7-support-packages.feature"
+      ]
+    },
+    {
+      "source": "npm:ihe.formatcode.fhir",
+      "tested": true,
+      "features": [
+        "hl7-support-packages.feature"
+      ]
+    },
+    {
+      "source": "npm:hl7.fhir.uv.ips#2.0.0",
+      "tested": true,
+      "features": [
+        "hl7.fhir.uv.ips.feature"
+      ]
+    },
+    {
+      "source": "npm:hl7.fhir.uv.ips#1.1.0",
+      "tested": true,
+      "features": [
+        "hl7.fhir.uv.ips.feature"
+      ]
+    },
+    {
+      "source": "npm:fhir.dicom",
+      "tested": true,
+      "features": [
+        "hl7-support-packages.feature"
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "feature": "code-systems.feature",
+      "name": "Built-in and file-based code systems are served",
+      "tags": [
+        "library:internal:lang",
+        "library:internal:country",
+        "library:internal:currency",
+        "library:internal:mimetypes",
+        "library:ucum:data/terminology-cache/ucum-essence-2.2.xml",
+        "library:loinc:loinc-2.81-b.db",
+        "library:unii:unii_20240622.db"
+      ],
+      "cases": [
+        {
+          "id": "internal-lang-bcp-47-language-codes-are-served",
+          "name": "internal-lang BCP 47 language codes are served",
+          "session": "83b95155-70eb-487e-8e42-30c463e0ad43",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:18",
+          "endTime": "25/10/2026 08:42:21",
+          "gherkin": "Scenario: internal-lang BCP 47 language codes are served\n  When Client validates a code against the code system on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"url\", \"valueUri\": \"urn:ietf:bcp:47\" },\n        { \"name\": \"code\", \"valueCode\": \"pt-PT\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'result').value = true\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /CodeSystem/$validate-code",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:18] INFO  - Starting session",
+            "[2026-10-25 08:42:20] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/internal-lang-bcp-47-language-codes-are-served.xml"
+        },
+        {
+          "id": "internal-country-iso-3166-country-codes-are-served",
+          "name": "internal-country ISO 3166 country codes are served",
+          "session": "46d36d2d-e8a5-4d54-b2a1-d8da6e2692bb",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:22",
+          "endTime": "25/10/2026 08:42:23",
+          "gherkin": "Scenario: internal-country ISO 3166 country codes are served\n  When Client validates a code against the code system on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"url\", \"valueUri\": \"urn:iso:std:iso:3166\" },\n        { \"name\": \"code\", \"valueCode\": \"BE\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'result').value = true\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /CodeSystem/$validate-code",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:22] INFO  - Starting session",
+            "[2026-10-25 08:42:23] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/internal-country-iso-3166-country-codes-are-served.xml"
+        },
+        {
+          "id": "internal-currency-iso-4217-currency-codes-are-served",
+          "name": "internal-currency ISO 4217 currency codes are served",
+          "session": "af27555d-9819-40d5-914a-3c9cfd72c30d",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:24",
+          "endTime": "25/10/2026 08:42:25",
+          "gherkin": "Scenario: internal-currency ISO 4217 currency codes are served\n  When Client validates a code against the code system on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"url\", \"valueUri\": \"urn:iso:std:iso:4217\" },\n        { \"name\": \"code\", \"valueCode\": \"EUR\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'result').value = true\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /CodeSystem/$validate-code",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:24] INFO  - Starting session",
+            "[2026-10-25 08:42:25] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/internal-currency-iso-4217-currency-codes-are-served.xml"
+        },
+        {
+          "id": "internal-mimetypes-mime-types-are-served",
+          "name": "internal-mimetypes MIME types are served",
+          "session": "b29495c6-8904-4e3d-97a4-e42cc6999c1d",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:26",
+          "endTime": "25/10/2026 08:42:28",
+          "gherkin": "Scenario: internal-mimetypes MIME types are served\n  When Client validates a code against the code system on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"url\", \"valueUri\": \"urn:ietf:bcp:13\" },\n        { \"name\": \"code\", \"valueCode\": \"application/fhir+json\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'result').value = true\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /CodeSystem/$validate-code",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:26] INFO  - Starting session",
+            "[2026-10-25 08:42:27] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/internal-mimetypes-mime-types-are-served.xml"
+        },
+        {
+          "id": "ucum-ucum-2-2-is-served",
+          "name": "ucum UCUM 2.2 is served",
+          "session": "c15dec16-17e7-4936-b65f-9665e9972f7d",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:29",
+          "endTime": "25/10/2026 08:42:30",
+          "gherkin": "Scenario: ucum UCUM 2.2 is served\n  When Client validates a code against the code system on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"url\", \"valueUri\": \"http://unitsofmeasure.org\" },\n        { \"name\": \"code\", \"valueCode\": \"mg/dL\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'result').value = true and parameter.where(name = 'version').value = '2.2'\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /CodeSystem/$validate-code",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'result').value = true and parameter.where(name = 'version').value = '2.2'",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'result').value = true and parameter.where(name = 'version').value = '2.2'",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:28] INFO  - Starting session",
+            "[2026-10-25 08:42:29] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/ucum-ucum-2-2-is-served.xml"
+        },
+        {
+          "id": "loinc-loinc-2-81-is-served",
+          "name": "loinc LOINC 2.81 is served",
+          "session": "f0153bc1-f6ce-480a-9236-416d3b32050a",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:31",
+          "endTime": "25/10/2026 08:42:32",
+          "gherkin": "Scenario: loinc LOINC 2.81 is served\n  When Client looks up a code on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"system\", \"valueUri\": \"http://loinc.org\" },\n        { \"name\": \"code\", \"valueCode\": \"8867-4\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'version').value = '2.81' and parameter.where(name = 'display').value = 'Heart rate'\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /CodeSystem/$lookup",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'version').value = '2.81' and parameter.where(name = 'display').value = 'Heart rate'",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'version').value = '2.81' and parameter.where(name = 'display').value = 'Heart rate'",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:30] INFO  - Starting session",
+            "[2026-10-25 08:42:31] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/loinc-loinc-2-81-is-served.xml"
+        },
+        {
+          "id": "unii-unii-of-2024-06-22-is-served",
+          "name": "unii UNII of 2024-06-22 is served",
+          "session": "da61ce4f-2b92-4b44-ad10-b1b092845dbb",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:33",
+          "endTime": "25/10/2026 08:42:34",
+          "gherkin": "Scenario: unii UNII of 2024-06-22 is served\n  When Client looks up a code on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"system\", \"valueUri\": \"http://fdasis.nlm.nih.gov\" },\n        { \"name\": \"code\", \"valueCode\": \"362O9ITL9D\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'version').value = '2024-06-22'\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /CodeSystem/$lookup",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'version').value = '2024-06-22'",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'version').value = '2024-06-22'",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:32] INFO  - Starting session",
+            "[2026-10-25 08:42:34] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/unii-unii-of-2024-06-22-is-served.xml"
+        }
+      ],
+      "id": "built-in-and-file-based-code-systems-are-served"
+    },
+    {
+      "feature": "hl7-support-packages.feature",
+      "name": "Unversioned support packages are served",
+      "tags": [
+        "library:npm:hl7.terminology.r4",
+        "library:npm:fhir.tx.support.r4",
+        "library:npm:ihe.formatcode.fhir",
+        "library:npm:fhir.dicom"
+      ],
+      "cases": [
+        {
+          "id": "tho-vs-validate-a-code-is-valid-in-a-tho-value-set",
+          "name": "tho-vs-validate A code is valid in a THO value set",
+          "session": "05ef8afd-8f1c-42bd-a7ec-e5b7ebdf48ad",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:35",
+          "endTime": "25/10/2026 08:42:36",
+          "gherkin": "@package:hl7.terminology.r4\nScenario: tho-vs-validate A code is valid in a THO value set\n  When Client validates a code on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"url\", \"valueUri\": \"http://terminology.hl7.org/ValueSet/v3-NullFlavor\" },\n        { \"name\": \"system\", \"valueUri\": \"http://terminology.hl7.org/CodeSystem/v3-NullFlavor\" },\n        { \"name\": \"code\", \"valueCode\": \"UNK\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'result').value = true\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /ValueSet/$validate-code",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:35] INFO  - Starting session",
+            "[2026-10-25 08:42:36] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/tho-vs-validate-a-code-is-valid-in-a-tho-value-set.xml"
+        },
+        {
+          "id": "tx-support-cs-lookup-the-tx-support-designation-usage-code-system-is-served",
+          "name": "tx-support-cs-lookup The tx.support designation-usage code system is served",
+          "session": "4f86adc7-5960-40a3-99bc-5a467baba3ad",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:37",
+          "endTime": "25/10/2026 08:42:39",
+          "gherkin": "@package:fhir.tx.support.r4\nScenario: tx-support-cs-lookup The tx.support designation-usage code system is served\n  When Client looks up a code on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"system\", \"valueUri\": \"http://fhir.org/packages/fhir.tx.support/CodeSystem/designation-usage\" },\n        { \"name\": \"code\", \"valueCode\": \"display\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'display').value = 'Display'\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /CodeSystem/$lookup",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'display').value = 'Display'",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'display').value = 'Display'",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:37] INFO  - Starting session",
+            "[2026-10-25 08:42:38] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/tx-support-cs-lookup-the-tx-support-designation-usage-code-system-is-served.xml"
+        },
+        {
+          "id": "formatcode-vs-validate-a-code-is-valid-in-the-ihe-format-code-value-set",
+          "name": "formatcode-vs-validate A code is valid in the IHE format code value set",
+          "session": "2f4d4dc3-b53c-464e-b7ab-8b7f6262d1db",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:40",
+          "endTime": "25/10/2026 08:42:41",
+          "gherkin": "@package:ihe.formatcode.fhir\nScenario: formatcode-vs-validate A code is valid in the IHE format code value set\n  When Client validates a code on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"url\", \"valueUri\": \"http://ihe.net/fhir/ihe.formatcode.fhir/ValueSet/formatcode\" },\n        { \"name\": \"system\", \"valueUri\": \"http://ihe.net/fhir/ihe.formatcode.fhir/CodeSystem/formatcode\" },\n        { \"name\": \"code\", \"valueCode\": \"urn:ihe:pcc\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'result').value = true\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /ValueSet/$validate-code",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:39] INFO  - Starting session",
+            "[2026-10-25 08:42:40] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/formatcode-vs-validate-a-code-is-valid-in-the-ihe-format-code-value-set.xml"
+        },
+        {
+          "id": "dicom-cs-lookup-the-dicom-code-system-from-fhir-dicom-is-served",
+          "name": "dicom-cs-lookup The DICOM code system from fhir.dicom is served",
+          "session": "cd1644e3-77b5-470d-815b-443898aeab7c",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:42",
+          "endTime": "25/10/2026 08:42:43",
+          "gherkin": "# The package version is named: without it the server picks the DCM code\n# system of version 01 that another package carries, which lacks most codes.\n@package:fhir.dicom\nScenario: dicom-cs-lookup The DICOM code system from fhir.dicom is served\n  When Client looks up a code on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"system\", \"valueUri\": \"http://dicom.nema.org/resources/ontology/DCM\" },\n        { \"name\": \"version\", \"valueString\": \"2025.3.20250714\" },\n        { \"name\": \"code\", \"valueCode\": \"ANN\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'display').value = 'Annotation'\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /CodeSystem/$lookup",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'display').value = 'Annotation'",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'display').value = 'Annotation'",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:41] INFO  - Starting session",
+            "[2026-10-25 08:42:42] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/dicom-cs-lookup-the-dicom-code-system-from-fhir-dicom-is-served.xml"
+        }
+      ],
+      "id": "unversioned-support-packages-are-served"
+    },
+    {
+      "feature": "hl7.eu.terminology.common.feature",
+      "name": "Package hl7.eu.terminology.common#0.4.0 is served",
+      "tags": [
+        "library:npm:hl7.eu.terminology.common#0.4.0"
+      ],
+      "cases": [
+        {
+          "id": "eu-common-cs-lookup-the-eu-edqm-code-system-of-2026-10-13-is-served",
+          "name": "eu-common-cs-lookup The EU EDQM code system of 2026-10-13 is served",
+          "session": "5aad1b33-0021-47c5-a347-47a19f08d080",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:44",
+          "endTime": "25/10/2026 08:42:45",
+          "gherkin": "# The EDQM code system carries its own edition (^version in edqm.fsh), not\n# the package version; the value set below checks the package version.\nScenario: eu-common-cs-lookup The EU EDQM code system of 2026-10-13 is served\n  When Client looks up a code on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"system\", \"valueUri\": \"http://hl7europe.org/fhir/terminology/common/CodeSystem/edqm\" },\n        { \"name\": \"version\", \"valueString\": \"2026-10-13\" },\n        { \"name\": \"code\", \"valueCode\": \"SOM\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'display').value = 'state of matter'\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /CodeSystem/$lookup",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'display').value = 'state of matter'",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'display').value = 'state of matter'",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:43] INFO  - Starting session",
+            "[2026-10-25 08:42:45] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/eu-common-cs-lookup-the-eu-edqm-code-system-of-2026-10-13-is-served.xml"
+        },
+        {
+          "id": "eu-common-vs-validate-a-code-is-valid-in-an-eu-laboratory-value-set-of-the-package-version",
+          "name": "eu-common-vs-validate A code is valid in an EU laboratory value set of the package version",
+          "session": "054971c1-2d67-4491-a942-5135695d604c",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:46",
+          "endTime": "25/10/2026 08:42:47",
+          "gherkin": "Scenario: eu-common-vs-validate A code is valid in an EU laboratory value set of the package version\n  When Client validates a code on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"url\", \"valueUri\": \"http://hl7europe.org/fhir/terminology/common/ValueSet/lab-reportType-eu-lab\" },\n        { \"name\": \"valueSetVersion\", \"valueString\": \"0.4.0\" },\n        { \"name\": \"system\", \"valueUri\": \"http://loinc.org\" },\n        { \"name\": \"code\", \"valueCode\": \"11502-2\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'result').value = true\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /ValueSet/$validate-code",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:46] INFO  - Starting session",
+            "[2026-10-25 08:42:47] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/eu-common-vs-validate-a-code-is-valid-in-an-eu-laboratory-value-set-of-the-package-version.xml"
+        }
+      ],
+      "id": "package-hl7-eu-terminology-common"
+    },
+    {
+      "feature": "hl7.eu.terminology.ehdsi.feature",
+      "name": "Package hl7.eu.terminology.ehdsi#0.2.0 is served",
+      "tags": [
+        "library:npm:hl7.eu.terminology.ehdsi#0.2.0"
+      ],
+      "cases": [
+        {
+          "id": "ehdsi-cs-lookup-the-ehdsi-edqm-code-system-is-the-package-version",
+          "name": "ehdsi-cs-lookup The eHDSI EDQM code system is the package version",
+          "session": "3bf7b6cb-84a8-488d-a39f-7298a1388897",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:48",
+          "endTime": "25/10/2026 08:42:49",
+          "gherkin": "Scenario: ehdsi-cs-lookup The eHDSI EDQM code system is the package version\n  When Client looks up a code on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"system\", \"valueUri\": \"http://hl7europe.org/fhir/terminology/ehdsi/CodeSystem/edqm-all\" },\n        { \"name\": \"version\", \"valueString\": \"0.2.0\" },\n        { \"name\": \"code\", \"valueCode\": \"domain\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'display').value = 'Domain'\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /CodeSystem/$lookup",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'display').value = 'Domain'",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'display').value = 'Domain'",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:48] INFO  - Starting session",
+            "[2026-10-25 08:42:49] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/ehdsi-cs-lookup-the-ehdsi-edqm-code-system-is-the-package-version.xml"
+        },
+        {
+          "id": "ehdsi-vs-validate-a-code-is-valid-in-an-ehdsi-value-set-of-the-package-version",
+          "name": "ehdsi-vs-validate A code is valid in an eHDSI value set of the package version",
+          "session": "59d3d8b8-81ab-44e8-89a4-02ec1084293d",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:50",
+          "endTime": "25/10/2026 08:42:52",
+          "gherkin": "Scenario: ehdsi-vs-validate A code is valid in an eHDSI value set of the package version\n  When Client validates a code on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"url\", \"valueUri\": \"http://terminology.ehdsi.eu/ValueSet/eHDSIAllergyCertainty\" },\n        { \"name\": \"valueSetVersion\", \"valueString\": \"0.2.0\" },\n        { \"name\": \"system\", \"valueUri\": \"http://terminology.hl7.org/CodeSystem/allergyintolerance-verification\" },\n        { \"name\": \"code\", \"valueCode\": \"unconfirmed\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'result').value = true\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /ValueSet/$validate-code",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:50] INFO  - Starting session",
+            "[2026-10-25 08:42:51] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/ehdsi-vs-validate-a-code-is-valid-in-an-ehdsi-value-set-of-the-package-version.xml"
+        },
+        {
+          "id": "ehdsi-vs-expand-the-ehdsi-value-set-expands-to-the-package-version",
+          "name": "ehdsi-vs-expand The eHDSI value set expands to the package version",
+          "session": "e2a46d45-e535-4986-8a3a-0ad866587413",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:53",
+          "endTime": "25/10/2026 08:42:54",
+          "gherkin": "Scenario: ehdsi-vs-expand The eHDSI value set expands to the package version\n  When Client expands on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"url\", \"valueUri\": \"http://terminology.ehdsi.eu/ValueSet/eHDSIAllergyCertainty\" },\n        { \"name\": \"valueSetVersion\", \"valueString\": \"0.2.0\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"version = '0.2.0' and expansion.contains.where(code = 'unconfirmed').exists()\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /ValueSet/$expand",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: version = '0.2.0' and expansion.contains.where(code = 'unconfirmed').exists()",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies version = '0.2.0' and expansion.contains.where(code = 'unconfirmed').exists()",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:52] INFO  - Starting session",
+            "[2026-10-25 08:42:53] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/ehdsi-vs-expand-the-ehdsi-value-set-expands-to-the-package-version.xml"
+        }
+      ],
+      "id": "package-hl7-eu-terminology-ehdsi"
+    },
+    {
+      "feature": "hl7.fhir.uv.ips.feature",
+      "name": "Packages hl7.fhir.uv.ips#2.0.0 and #1.1.0 are both served",
+      "tags": [
+        "library:npm:hl7.fhir.uv.ips#2.0.0",
+        "library:npm:hl7.fhir.uv.ips#1.1.0"
+      ],
+      "cases": [
+        {
+          "id": "ips-2-vs-validate-a-code-is-valid-in-an-ips-2-0-0-value-set",
+          "name": "ips-2-vs-validate A code is valid in an IPS 2.0.0 value set",
+          "session": "716b5a74-ab44-47be-b243-755816d9814e",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:55",
+          "endTime": "25/10/2026 08:42:56",
+          "gherkin": "Scenario: ips-2-vs-validate A code is valid in an IPS 2.0.0 value set\n  When Client validates a code on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"url\", \"valueUri\": \"http://hl7.org/fhir/uv/ips/ValueSet/problem-type-loinc\" },\n        { \"name\": \"valueSetVersion\", \"valueString\": \"2.0.0\" },\n        { \"name\": \"system\", \"valueUri\": \"http://loinc.org\" },\n        { \"name\": \"code\", \"valueCode\": \"75326-9\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'result').value = true\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /ValueSet/$validate-code",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:54] INFO  - Starting session",
+            "[2026-10-25 08:42:55] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/ips-2-vs-validate-a-code-is-valid-in-an-ips-2-0-0-value-set.xml"
+        },
+        {
+          "id": "ips-1-cs-lookup-the-ips-1-1-0-absent-unknown-code-system-is-served",
+          "name": "ips-1-cs-lookup The IPS 1.1.0 absent-unknown code system is served",
+          "session": "13928371-20cb-4661-8ff0-19d627e93eb5",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:57",
+          "endTime": "25/10/2026 08:42:58",
+          "gherkin": "Scenario: ips-1-cs-lookup The IPS 1.1.0 absent-unknown code system is served\n  When Client looks up a code on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"system\", \"valueUri\": \"http://hl7.org/fhir/uv/ips/CodeSystem/absent-unknown-uv-ips\" },\n        { \"name\": \"version\", \"valueString\": \"1.1.0\" },\n        { \"name\": \"code\", \"valueCode\": \"no-allergy-info\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'version').value = '1.1.0'\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /CodeSystem/$lookup",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'version').value = '1.1.0'",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'version').value = '1.1.0'",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:57] INFO  - Starting session",
+            "[2026-10-25 08:42:58] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/ips-1-cs-lookup-the-ips-1-1-0-absent-unknown-code-system-is-served.xml"
+        },
+        {
+          "id": "ips-1-vs-validate-a-code-is-valid-in-an-ips-1-1-0-value-set",
+          "name": "ips-1-vs-validate A code is valid in an IPS 1.1.0 value set",
+          "session": "5f8059ba-8624-4291-92c4-ae9b339189ed",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:42:59",
+          "endTime": "25/10/2026 08:43:00",
+          "gherkin": "Scenario: ips-1-vs-validate A code is valid in an IPS 1.1.0 value set\n  When Client validates a code on TxServer with:\n    \"\"\"\n    { \"resourceType\": \"Parameters\", \"parameter\": [\n        { \"name\": \"url\", \"valueUri\": \"http://hl7.org/fhir/uv/ips/ValueSet/absent-or-unknown-allergies-uv-ips\" },\n        { \"name\": \"valueSetVersion\", \"valueString\": \"1.1.0\" },\n        { \"name\": \"system\", \"valueUri\": \"http://hl7.org/fhir/uv/ips/CodeSystem/absent-unknown-uv-ips\" },\n        { \"name\": \"code\", \"valueCode\": \"no-allergy-info\" } ] }\n    \"\"\"\n  Then $response.status should be 200\n  And $response should satisfy \"parameter.where(name = 'result').value = true\"",
+          "steps": [
+            {
+              "id": "2",
+              "description": "Step 1: POST /ValueSet/$validate-code",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "3",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "5",
+              "description": "Step 3: FHIRPath assertion: parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "7",
+              "description": "Step 4: $response satisfies parameter.where(name = 'result').value = true",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:42:59] INFO  - Starting session",
+            "[2026-10-25 08:43:00] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/ips-1-vs-validate-a-code-is-valid-in-an-ips-1-1-0-value-set.xml"
+        }
+      ],
+      "id": "packages-hl7-fhir-uv-ips"
+    },
+    {
+      "feature": "server.feature",
+      "name": "The server runs the expected FHIRsmith release",
+      "tags": [
+        "server"
+      ],
+      "cases": [
+        {
+          "id": "server-software-the-capability-statement-names-the-deployed-fhirsmith-release",
+          "name": "server-software The capability statement names the deployed FHIRsmith release",
+          "session": "2a5ee682-c677-4b35-9f04-1e5252927945",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:43:01",
+          "endTime": "25/10/2026 08:43:02",
+          "gherkin": "Scenario: server-software The capability statement names the deployed FHIRsmith release\n  When Client reads the capability statement of TxServer as $caps\n  Then $response.status should be 200\n  And $caps should satisfy \"software.name = 'FHIRsmith' and software.version = '0.18.0' and fhirVersion = '4.0.1'\"",
+          "steps": [
+            {
+              "id": "1",
+              "description": "Step 1: GET /metadata",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "2",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "4",
+              "description": "Step 3: FHIRPath assertion: software.name = 'FHIRsmith' and software.version = '0.18.0' and fhirVersion = '4.0.1'",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "6",
+              "description": "Step 4: $caps satisfies software.name = 'FHIRsmith' and software.version = '0.18.0' and fhirVersion = '4.0.1'",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:43:01] INFO  - Starting session",
+            "[2026-10-25 08:43:02] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/server-software-the-capability-statement-names-the-deployed-fhirsmith-release.xml"
+        },
+        {
+          "id": "server-terminology-capabilities-the-terminology-capabilities-are-served",
+          "name": "server-terminology-capabilities The terminology capabilities are served",
+          "session": "71cf33d0-2715-41a4-a666-497890a03f48",
+          "result": "SUCCESS",
+          "message": "Test case completed successfully.",
+          "startTime": "25/10/2026 08:43:03",
+          "endTime": "25/10/2026 08:43:05",
+          "gherkin": "Scenario: server-terminology-capabilities The terminology capabilities are served\n  When Client reads the terminology capabilities of TxServer as $tcaps\n  Then $response.status should be 200\n  And $tcaps should satisfy \"codeSystem.where(uri = 'http://loinc.org').exists()\"",
+          "steps": [
+            {
+              "id": "1",
+              "description": "Step 1: GET /metadata?mode=terminology",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "2",
+              "description": "Step 2: Response status is 200",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "4",
+              "description": "Step 3: FHIRPath assertion: codeSystem.where(uri = 'http://loinc.org').exists()",
+              "result": "SUCCESS",
+              "errors": []
+            },
+            {
+              "id": "6",
+              "description": "Step 4: $tcaps satisfies codeSystem.where(uri = 'http://loinc.org').exists()",
+              "result": "SUCCESS",
+              "errors": []
+            }
+          ],
+          "logs": [
+            "[2026-10-25 08:43:03] INFO  - Starting session",
+            "[2026-10-25 08:43:05] INFO  - Session finished with result [COMPLETED]"
+          ],
+          "report": "reports/server-terminology-capabilities-the-terminology-capabilities-are-served.xml"
+        }
+      ],
+      "id": "the-server-runs-the-expected-fhirsmith-release"
+    }
+  ]
+}
