@@ -41,11 +41,11 @@ split
 split again
   |Maintainers|
   :Open an issue
-  (upgrade or fix);
+  (platform upgrade or fix);
 end split
 |Maintainers|
 :Discuss the issue;
-if (Server change or problem?) then (yes)
+if (Server platform change or problem?) then (yes)
   :Decide in the issue;
 else (no: content)
   |Terminology maintainers|
@@ -56,8 +56,7 @@ else (no: content)
 endif
 :Onboard the change when ready
 and wanted: pull request that closes
-the issue (library.yml, FHIRsmith
-or Caddy) plus its test;
+the issue, with its test;
 :Review and merge;
 :Release with release notes;
 :Deploy the release on the server;
