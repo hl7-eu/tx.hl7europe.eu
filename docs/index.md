@@ -32,38 +32,38 @@ skinparam SwimlaneTitleFontStyle bold
 |Requester|
 |Maintainers|
 |Terminology maintainers|
-|GitHub Actions|
+|Automated tests|
 |Requester|
 start
 split
-  :Open an issue
-  (content change or problem);
+  :Ask for a content change
+  or report a problem;
 split again
   |Maintainers|
-  :Open an issue
-  (platform upgrade or fix);
+  :Propose a platform
+  upgrade or fix;
 end split
 |Maintainers|
-:Discuss the issue;
-if (Server platform change or problem?) then (yes)
-  :Decide in the issue;
+:Discuss the request;
+if (Platform change or problem?) then (yes)
+  :Decide;
 else (no: content)
   |Terminology maintainers|
   :Check the request, or prepare
-  the change (e.g. update a code system)
-  and publish the content as a package;
+  the change and publish
+  the content;
   |Maintainers|
 endif
-:Onboard the change when ready
-and wanted: pull request that closes
-the issue, with its test;
-:Review and merge;
-:Release with release notes;
-:Deploy the release on the server;
-|GitHub Actions|
-:Deployment tests in ITB
-against the live server;
-:Results on the Releases page;
+:Take in the change
+when ready and wanted;
+:Release a new edition
+with release notes;
+:Put the edition
+on the server;
+|Automated tests|
+:Test the live server;
+:Publish the results
+with the release;
 stop
 @enduml
 
