@@ -23,8 +23,7 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
+  actions: write   # to start the Pages workflow
 
 concurrency:
   group: deployment-tests
@@ -115,10 +114,18 @@ jobs:
           git -C results commit -qm "Test run $RUN_ID${RELEASE_TAG:+ for $RELEASE_TAG}: ${{ steps.run.outputs.result }}"
           git -C results push origin HEAD:test-results
 
+  # Started on the default branch, not called from here: a release runs this
+  # workflow on its tag, and the github-pages environment only accepts
+  # deployments from master.
   site:
     needs: test
     if: ${{ !cancelled() }}
-    uses: ./.github/workflows/pages.yml
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rebuild the site
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml -R "${{ github.repository }}" --ref "${{ github.event.repository.default_branch || 'master' }}"
 
   verdict:
     needs: [test, site]
