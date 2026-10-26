@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseOverviewReport xmlns="http://www.gitb.com/tr/v1/"
+                        xmlns:ns2="http://www.gitb.com/core/v1/"
+                        xmlns:ns3="http://www.gitb.com/tbs/v1/"
+                        id="unii-unii-of-2024-06-22-is-served">
+   <metadata>
+      <ns2:name>unii UNII of 2024-06-22 is served</ns2:name>
+      <ns2:version>1.0</ns2:version>
+      <ns2:description>Built-in and file-based code systems are served</ns2:description>
+   </metadata>
+   <sessionId>7680d7eb-d71b-4cd2-8afb-35ceb387d122</sessionId>
+   <startTime>2026-10-26T11:04:49.000Z</startTime>
+   <endTime>2026-10-26T11:04:51.000Z</endTime>
+   <result>FAILURE</result>
+   <message>Test case failed. Check step reports and logs.</message>
+   <steps>
+      <step id="2">
+         <description>Step 1: POST /CodeSystem/$lookup</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 id="2">
+            <date>2026-10-26T11:04:50.107Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+      <step id="3">
+         <description>Step 2: Response status is 200</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 name="Number Validation"
+                 id="3">
+            <date>2026-10-26T11:04:50.118Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+      <step id="5">
+         <description>Step 3: FHIRPath assertion: parameter.where(name = 'version').value = '2024-06-22'</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 id="5">
+            <date>2026-10-26T11:04:50.158Z</date>
+            <result>FAILURE</result>
+            <reports>
+               <error xsi:type="BAR">
+                  <description>Connect</description>
+               </error>
+            </reports>
+         </report>
+      </step>
+   </steps>
+</TestCaseOverviewReport>

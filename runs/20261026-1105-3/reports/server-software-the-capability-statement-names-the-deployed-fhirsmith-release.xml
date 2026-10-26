@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseOverviewReport xmlns="http://www.gitb.com/tr/v1/"
+                        xmlns:ns2="http://www.gitb.com/core/v1/"
+                        xmlns:ns3="http://www.gitb.com/tbs/v1/"
+                        id="server-software-the-capability-statement-names-the-deployed-fhirsmith-release">
+   <metadata>
+      <ns2:name>server-software The capability statement names the deployed FHIRsmith release</ns2:name>
+      <ns2:version>1.0</ns2:version>
+      <ns2:description>The server runs the expected FHIRsmith release</ns2:description>
+   </metadata>
+   <sessionId>241499bf-d90c-421f-a2d0-1bfdf8e708cf</sessionId>
+   <startTime>2026-10-26T11:05:24.000Z</startTime>
+   <endTime>2026-10-26T11:05:25.000Z</endTime>
+   <result>FAILURE</result>
+   <message>Test case failed. Check step reports and logs.</message>
+   <steps>
+      <step id="1">
+         <description>Step 1: GET /metadata</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 id="1">
+            <date>2026-10-26T11:05:24.062Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+      <step id="2">
+         <description>Step 2: Response status is 200</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 name="Number Validation"
+                 id="2">
+            <date>2026-10-26T11:05:24.073Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+      <step id="4">
+         <description>Step 3: FHIRPath assertion: software.name = 'FHIRsmith' and software.version = '0.18.0' and fhirVersion = '4.0.1'</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 id="4">
+            <date>2026-10-26T11:05:24.105Z</date>
+            <result>FAILURE</result>
+            <reports>
+               <error xsi:type="BAR">
+                  <description>Connect</description>
+               </error>
+            </reports>
+         </report>
+      </step>
+   </steps>
+</TestCaseOverviewReport>

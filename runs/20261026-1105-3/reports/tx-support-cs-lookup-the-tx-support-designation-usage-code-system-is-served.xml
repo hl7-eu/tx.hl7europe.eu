@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseOverviewReport xmlns="http://www.gitb.com/tr/v1/"
+                        xmlns:ns2="http://www.gitb.com/core/v1/"
+                        xmlns:ns3="http://www.gitb.com/tbs/v1/"
+                        id="tx-support-cs-lookup-the-tx-support-designation-usage-code-system-is-served">
+   <metadata>
+      <ns2:name>tx-support-cs-lookup The tx.support designation-usage code system is served</ns2:name>
+      <ns2:version>1.0</ns2:version>
+      <ns2:description>Unversioned support packages are served</ns2:description>
+   </metadata>
+   <sessionId>4ca74f74-38ca-4b50-8aa6-fc740437942e</sessionId>
+   <startTime>2026-10-26T11:04:54.000Z</startTime>
+   <endTime>2026-10-26T11:04:55.000Z</endTime>
+   <result>FAILURE</result>
+   <message>Test case failed. Check step reports and logs.</message>
+   <steps>
+      <step id="2">
+         <description>Step 1: POST /CodeSystem/$lookup</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 id="2">
+            <date>2026-10-26T11:04:54.411Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+      <step id="3">
+         <description>Step 2: Response status is 200</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 name="Number Validation"
+                 id="3">
+            <date>2026-10-26T11:04:54.420Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+      <step id="5">
+         <description>Step 3: FHIRPath assertion: parameter.where(name = 'display').value = 'Display'</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 id="5">
+            <date>2026-10-26T11:04:54.459Z</date>
+            <result>FAILURE</result>
+            <reports>
+               <error xsi:type="BAR">
+                  <description>Connect</description>
+               </error>
+            </reports>
+         </report>
+      </step>
+   </steps>
+</TestCaseOverviewReport>

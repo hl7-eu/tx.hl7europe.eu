@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseOverviewReport xmlns="http://www.gitb.com/tr/v1/"
+                        xmlns:ns2="http://www.gitb.com/core/v1/"
+                        xmlns:ns3="http://www.gitb.com/tbs/v1/"
+                        id="ips-1-cs-lookup-the-ips-1-1-0-absent-unknown-code-system-is-served">
+   <metadata>
+      <ns2:name>ips-1-cs-lookup The IPS 1.1.0 absent-unknown code system is served</ns2:name>
+      <ns2:version>1.0</ns2:version>
+      <ns2:description>Packages hl7.fhir.uv.ips</ns2:description>
+   </metadata>
+   <sessionId>2c4b5780-5526-43e7-885a-7eeac88f2524</sessionId>
+   <startTime>2026-10-26T11:05:13.000Z</startTime>
+   <endTime>2026-10-26T11:05:14.000Z</endTime>
+   <result>FAILURE</result>
+   <message>Test case failed. Check step reports and logs.</message>
+   <steps>
+      <step id="2">
+         <description>Step 1: POST /CodeSystem/$lookup</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 id="2">
+            <date>2026-10-26T11:05:13.500Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+      <step id="3">
+         <description>Step 2: Response status is 200</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 name="Number Validation"
+                 id="3">
+            <date>2026-10-26T11:05:13.507Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+      <step id="5">
+         <description>Step 3: FHIRPath assertion: parameter.where(name = 'version').value = '1.1.0'</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 id="5">
+            <date>2026-10-26T11:05:13.538Z</date>
+            <result>FAILURE</result>
+            <reports>
+               <error xsi:type="BAR">
+                  <description>Connect</description>
+               </error>
+            </reports>
+         </report>
+      </step>
+   </steps>
+</TestCaseOverviewReport>

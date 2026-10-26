@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseOverviewReport xmlns="http://www.gitb.com/tr/v1/"
+                        xmlns:ns2="http://www.gitb.com/core/v1/"
+                        xmlns:ns3="http://www.gitb.com/tbs/v1/"
+                        id="ehdsi-vs-expand-the-ehdsi-value-set-expands-to-the-package-version">
+   <metadata>
+      <ns2:name>ehdsi-vs-expand The eHDSI value set expands to the package version</ns2:name>
+      <ns2:version>1.0</ns2:version>
+      <ns2:description>Package hl7.eu.terminology.ehdsi</ns2:description>
+   </metadata>
+   <sessionId>612afad8-30da-4b27-b1e2-4a44a82b247e</sessionId>
+   <startTime>2026-10-26T11:05:09.000Z</startTime>
+   <endTime>2026-10-26T11:05:10.000Z</endTime>
+   <result>FAILURE</result>
+   <message>Test case failed. Check step reports and logs.</message>
+   <steps>
+      <step id="2">
+         <description>Step 1: POST /ValueSet/$expand</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 id="2">
+            <date>2026-10-26T11:05:09.245Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+      <step id="3">
+         <description>Step 2: Response status is 200</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 name="Number Validation"
+                 id="3">
+            <date>2026-10-26T11:05:09.253Z</date>
+            <result>SUCCESS</result>
+            <counters>
+               <nrOfAssertions>0</nrOfAssertions>
+               <nrOfErrors>0</nrOfErrors>
+               <nrOfWarnings>0</nrOfWarnings>
+            </counters>
+         </report>
+      </step>
+      <step id="5">
+         <description>Step 3: FHIRPath assertion: version = '0.2.0' and expansion.contains.where(code = 'unconfirmed').exists()</description>
+         <report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:type="TAR"
+                 id="5">
+            <date>2026-10-26T11:05:09.296Z</date>
+            <result>FAILURE</result>
+            <reports>
+               <error xsi:type="BAR">
+                  <description>Connect</description>
+               </error>
+            </reports>
+         </report>
+      </step>
+   </steps>
+</TestCaseOverviewReport>
