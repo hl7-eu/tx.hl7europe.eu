@@ -30,29 +30,29 @@ skinparam ActivityBorderColor #1F5B99
 skinparam ArrowColor #1F5B99
 skinparam SwimlaneTitleFontStyle bold
 |Requester|
-|Maintainers|
-|Terminology maintainers|
-|Automated tests|
+|System\nmaintainers|
+|Content\nMaintainers|
+|Automated\ntests|
 |Requester|
 start
 split
   :Ask for a content change
   or report a problem;
 split again
-  |Maintainers|
+  |System\nmaintainers|
   :Propose a platform
   upgrade or fix;
 end split
-|Maintainers|
+|System\nmaintainers|
 :Discuss the request;
 if (Platform change or problem?) then (yes)
   :Decide;
 else (no: content)
-  |Terminology maintainers|
+  |Content\nMaintainers|
   :Check the request, or prepare
   the change and publish
   the content;
-  |Maintainers|
+  |System\nmaintainers|
 endif
 :Take in the change
 when ready and wanted;
@@ -61,7 +61,7 @@ when ready and wanted;
 with release notes;
 :Put the edition
 on the server;
-|Automated tests|
+|Automated\ntests|
 :Test the live server;
 :Publish the results
 with the release;
