@@ -63,6 +63,8 @@ with release notes;
 on the server;
 |Automated\ntests|
 :Test the live server;
+|System\nmaintainers|
+:Review the test results;
 :Publish the results
 with the release;
 stop
