@@ -26,11 +26,11 @@ Full documentation: <https://hl7-eu.github.io/tx.hl7europe.eu/>
 
 ## Requesting a change
 
-[Check the existing issues](https://github.com/hl7-eu/tx.hl7europe.eu/issues?q=is%3Aissue) first: if one already covers your need, comment on it there. Otherwise, [open an issue](https://github.com/hl7-eu/tx.hl7europe.eu/issues/new) to ask for new or updated content, or to report a problem or request a change in this server, its documentation, or the ecosystem. [Requesting a change](https://hl7-eu.github.io/tx.hl7europe.eu/requesting-changes.html) says what to put in the issue and what happens to it. The [terminology roadmap](https://github.com/orgs/hl7-eu/projects/7/views/8) shows the planned content.
+To ask for new or updated content, or to report a problem or request a change in this server, its documentation, or the ecosystem, [check the existing issues](https://github.com/hl7-eu/tx.hl7europe.eu/issues?q=is%3Aissue) - comment or support one issue, or [open a new issue](https://github.com/hl7-eu/tx.hl7europe.eu/issues/new). [Requesting a change](https://hl7-eu.github.io/tx.hl7europe.eu/requesting-changes.html) says what to put in the issue and what happens to it. The [terminology roadmap](https://github.com/orgs/hl7-eu/projects/7/views/8) shows the planned content.
 
 ## Content from HL7 Europe
 
-These HL7 Europe repositories publish the packages that the server loads:
+These HL7 Europe repositories publish the packages that the server currently loads:
 
 | Package | Repository |
 |---|---|
