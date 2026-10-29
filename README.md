@@ -26,7 +26,7 @@ Full documentation: <https://hl7-eu.github.io/tx.hl7europe.eu/>
 
 ## Requesting a change
 
-[Open an issue](https://github.com/hl7-eu/tx.hl7europe.eu/issues/new) to ask for new or updated content, or to report a problem. [Requesting a change](https://hl7-eu.github.io/tx.hl7europe.eu/requesting-changes.html) says what to put in the issue and what happens to it. The [terminology roadmap](https://github.com/orgs/hl7-eu/projects/7/views/8) shows the planned content.
+[Open an issue](https://github.com/hl7-eu/tx.hl7europe.eu/issues/new) to ask for new or updated content, or to report a problem or request a change in this server, its documentation, or the ecosystem. [Requesting a change](https://hl7-eu.github.io/tx.hl7europe.eu/requesting-changes.html) says what to put in the issue and what happens to it. The [issue list](https://github.com/hl7-eu/tx.hl7europe.eu/issues) shows the open requests and problems. The [terminology roadmap](https://github.com/orgs/hl7-eu/projects/7/views/8) shows the planned content.
 
 ## Content from HL7 Europe
 
